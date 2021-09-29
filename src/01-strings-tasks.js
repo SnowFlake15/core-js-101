@@ -285,19 +285,8 @@ function isString(value) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(value) {
-  if (value.includes('A')) {
-    return 0;
-  } if (value.includes('K')) {
-    return 51;
-  } if (value.includes('Q')) {
-    return 50;
-  } if (value.includes('J')) {
-    return 49;
-  } if (value.includes('10')) {
-    return 9;
-  }
-  return value[0] - 1;
+function getCardId(/* value */) {
+  throw new Error('Not implemented');
 }
 
 
