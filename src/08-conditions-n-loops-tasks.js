@@ -163,8 +163,15 @@ function doRectanglesOverlap(/* rect1, rect2 */) {
  *   { center: { x:0, y:0 }, radius:10 },  { x:10, y:10 }   => false
  *
  */
-function isInsideCircle(/* circle, point */) {
-  throw new Error('Not implemented');
+function isInsideCircle(circle, point) {
+  const cirX = circle.center.x;
+  const cirY = circle.center.y;
+  const rad = circle.radius;
+  const pox = point.x;
+  const poy = point.y;
+  const l = Math.sqrt((pox - cirX) ** 2 + (poy - cirY) ** 2);
+  if (l < rad) return true;
+  return false;
 }
 
 
@@ -290,8 +297,14 @@ function isCreditCardNumber(/* ccn */) {
  *   10000 ( 1+0+0+0+0 = 1 ) => 1
  *   165536 (1+6+5+5+3+6 = 26,  2+6 = 8) => 8
  */
-function getDigitalRoot(/* num */) {
-  throw new Error('Not implemented');
+function getDigitalRoot(num) {
+  const x = String(num);
+  const y = x.split('');
+  const z = y.reduce((sum, current) => sum + Number(current), 0);
+  if (z < 10) {
+    return z;
+  }
+  return getDigitalRoot(z);
 }
 
 
@@ -341,8 +354,8 @@ function isBracketsBalanced(/* str */) {
  *    365, 4  => '11231'
  *    365, 10 => '365'
  */
-function toNaryString(/* num, n */) {
-  throw new Error('Not implemented');
+function toNaryString(num, n) {
+  return String((num).toString(n));
 }
 
 
@@ -416,8 +429,32 @@ function getMatrixProduct(/* m1, m2 */) {
  *    [    ,   ,    ]]
  *
  */
-function evaluateTicTacToePosition(/* position */) {
-  throw new Error('Not implemented');
+function evaluateTicTacToePosition(position) {
+  let x = '';
+  function func(y) {
+    if (position[0][0] === y && position[0][1] === y && position[0][2] === y) {
+      x = y;
+    } else if (position[1][0] === y && position[1][1] === y && position[1][2] === y) {
+      x = y;
+    } else if (position[2][0] === y && position[2][1] === y && position[2][2] === y) {
+      x = y;
+    } else if (position[0][0] === y && position[1][0] === y && position[2][0] === y) {
+      x = y;
+    } else if (position[0][1] === y && position[1][1] === y && position[2][1] === y) {
+      x = y;
+    } else if (position[0][2] === y && position[1][2] === y && position[2][2] === y) {
+      x = y;
+    } else if (position[0][0] === y && position[1][1] === y && position[2][2] === y) {
+      x = y;
+    } else if (position[0][2] === y && position[1][1] === y && position[2][0] === y) {
+      x = y;
+    }
+  }
+  func('X');
+  func('0');
+  if (x === 'X') return 'X';
+  if (x === '0') return '0';
+  return undefined;
 }
 
 
